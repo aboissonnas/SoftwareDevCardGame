@@ -28,4 +28,12 @@ public class CardTests
 			fail();
 		}
 	}
+	
+	@Test
+	public void testValidValues()
+	{
+		//confirm invalid value becomes 1
+		Card c1 = new Card(20, "Clubs");
+		assertEquals(c1.getValue(), 1);
+	}
 }

@@ -8,7 +8,7 @@ public class Card
 	public Card(int val, String input_suit)
 	{
 		//store value and suit
-		setValue(val);
+		setValue(checkValid(val));
 		setSuit(input_suit);
 	}
 	
@@ -40,6 +40,19 @@ public class Card
 		}
 		
 		retVal = retVal + " of " + getSuit();
+		
+		return retVal;
+	}
+	
+	//check for valid value
+	private int checkValid(int val)
+	{
+		int retVal = val;
+		
+		if(val < 1 || val > 14)
+		{
+			retVal = 1;
+		}
 		
 		return retVal;
 	}

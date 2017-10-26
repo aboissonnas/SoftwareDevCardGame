@@ -1,4 +1,4 @@
-
+//class to hold a value and suit to imitate a playing card
 public class Card
 {
 	private int value;
@@ -8,8 +8,8 @@ public class Card
 	public Card(int val, String input_suit)
 	{
 		//store value and suit
-		setValue(checkValid(val));
-		setSuit(input_suit);
+		setValue(checkValidValue(val));
+		setSuit(checkValidSuit(input_suit));
 	}
 	
 	//print function
@@ -45,13 +45,28 @@ public class Card
 	}
 	
 	//check for valid value
-	private int checkValid(int val)
+	private int checkValidValue(int val)
 	{
 		int retVal = val;
 		
-		if(val < 1 || val > 14)
+		//if value is invalid
+		if(val < 2 || val > 14)
 		{
 			retVal = 1;
+		}
+		
+		return retVal;
+	}
+	
+	//check for valid suit
+	private String checkValidSuit(String val)
+	{
+		String retVal = val;
+		
+		//if value is invalid
+		if(val != "Hearts" && val != "Clubs" && val != "Spades" && val != "Diamonds")
+		{
+			retVal = "Invalid";
 		}
 		
 		return retVal;

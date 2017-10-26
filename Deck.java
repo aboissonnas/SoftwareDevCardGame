@@ -1,4 +1,5 @@
 import java.util.Vector;
+import java.util.Collections;
 
 //class to hold 52 playing cards to imitate a deck
 public class Deck
@@ -24,6 +25,13 @@ public class Deck
 				deck.add(card);
 			}
 		}
+	}
+	
+	//shuffle the deck randomly
+	public void shuffle()
+	{
+		//shuffle deck
+		Collections.shuffle(deck);
 	}
 	
 	//getter for the deck

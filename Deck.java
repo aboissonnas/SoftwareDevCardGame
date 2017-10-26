@@ -1,16 +1,19 @@
 import java.util.Vector;
 import java.util.Collections;
+import java.util.ListIterator;
 
 //class to hold 52 playing cards to imitate a deck
 public class Deck
 {
 	private Vector<Card> deck;
+	private int dealLocation;
 	
 	//constructor
 	public Deck()
 	{
 		//initialize deck
 		deck = new Vector<Card>(52);
+		dealLocation = 0;
 		
 		//temporary variables
 		Card card;
@@ -32,6 +35,36 @@ public class Deck
 	{
 		//shuffle deck
 		Collections.shuffle(deck);
+	}
+	
+	//deal the specified number of cards out of the deck
+	public Vector<Card> deal(int numToDeal)
+	{
+		Vector<Card> dealtCards = null;
+		
+		if(!(dealLocation + numToDeal > remainingCards()))
+		{
+			//make iterator and return vector
+			ListIterator<Card> iterator = deck.listIterator(dealLocation);
+			dealtCards = new Vector<Card>(numToDeal);
+			
+			//while there are more cards in the deck and not enough cards have been dealt
+			while(iterator.hasNext() && iterator.nextIndex() < numToDeal + dealLocation)
+			{
+				dealtCards.add(iterator.next());
+			}
+			
+			//update dealLocation
+			dealLocation = iterator.nextIndex();
+		}
+		
+		return dealtCards;
+	}
+
+	//find how many cards remain to be dealt
+	public int remainingCards()
+	{
+		return deck.size() - dealLocation;
 	}
 	
 	//getter for the deck

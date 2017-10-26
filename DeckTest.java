@@ -46,4 +46,37 @@ public class DeckTest
 		
 		assertTrue(numInSamePosition < 5);
 	}
+	
+	@Test
+	public void testDeal()
+	{
+		//create a new deck and deal some cards
+		Deck d1 = new Deck();
+		Vector<Card> d1Deck = d1.getDeck();
+		Vector<Card> dealtCards = d1.deal(4);
+		
+		//confirm that cards have been dealt
+		assertEquals(dealtCards.size(), 4);
+		for(int i = 0; i < dealtCards.size(); i++)
+		{
+			assertTrue(d1Deck.contains(dealtCards.get(i)));
+		}
+		
+		//deal more cards
+		Vector<Card> dealtCards2 = d1.deal(4);
+		
+		//confirm that new cards have been dealt
+		for(int i = 0; i < dealtCards.size(); i++)
+		{
+			assertFalse(dealtCards.contains(dealtCards2.get(i)));
+		}
+		
+		//try to deal too many cards
+		Vector<Card> dealtCards3 = d1.deal(800);
+		Vector<Card> dealtCards4 = d1.deal(d1.remainingCards() + 1);
+		
+		//confirm that the deck won't deal more cards than it has
+		assertNull(dealtCards3);
+		assertNull(dealtCards4);
+	}
 }

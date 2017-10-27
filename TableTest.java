@@ -32,4 +32,20 @@ public class TableTest
 		}
 	}
 
+	@Test (expected = DeckDealOverflowException.class)
+	public void testDeal() throws DeckDealOverflowException
+	{
+		try
+		{
+			Table t1 = new Table(5);
+			t1.deal(2);
+		}
+		catch(DeckDealOverflowException ex)
+		{
+			fail();
+		}
+		
+		Table t2 = new Table(20);
+		t2.deal(3);
+	}
 }

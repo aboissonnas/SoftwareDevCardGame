@@ -9,7 +9,7 @@ public class Deck
 	private int dealLocation;
 	
 	//constructor
-	public Deck()
+	public Deck() throws InvalidCardException
 	{
 		//initialize deck
 		deck = new Vector<Card>(52);
@@ -38,11 +38,15 @@ public class Deck
 	}
 	
 	//deal the specified number of cards out of the deck
-	public Vector<Card> deal(int numToDeal)
+	public Vector<Card> deal(int numToDeal) throws DeckDealOverflowException
 	{
 		Vector<Card> dealtCards = null;
 		
-		if(!(dealLocation + numToDeal > remainingCards()))
+		if(dealLocation + numToDeal > remainingCards())
+		{
+			throw new DeckDealOverflowException("Tried to deal more cards than are in the deck");
+		}
+		else
 		{
 			//make iterator and return vector
 			ListIterator<Card> iterator = deck.listIterator(dealLocation);

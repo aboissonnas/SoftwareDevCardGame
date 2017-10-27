@@ -5,11 +5,15 @@ public class Card
 	private String suit;
 	
 	//constructor
-	public Card(int val, String input_suit)
+	public Card(int val, String input_suit) throws InvalidCardException
 	{
+		//check for invalid values
+		checkValidValue(val);
+		checkValidSuit(input_suit);
+		
 		//store value and suit
-		setValue(checkValidValue(val));
-		setSuit(checkValidSuit(input_suit));
+		setValue(val);
+		setSuit(input_suit);
 	}
 	
 	//print function
@@ -45,31 +49,23 @@ public class Card
 	}
 	
 	//check for valid value
-	private int checkValidValue(int val)
+	private void checkValidValue(int val) throws InvalidCardException
 	{
-		int retVal = val;
-		
 		//if value is invalid
 		if(val < 2 || val > 14)
 		{
-			retVal = 1;
+			throw new InvalidCardException("Invalid card value");
 		}
-		
-		return retVal;
 	}
 	
 	//check for valid suit
-	private String checkValidSuit(String val)
+	private void checkValidSuit(String val) throws InvalidCardException
 	{
-		String retVal = val;
-		
 		//if value is invalid
 		if(val != "Hearts" && val != "Clubs" && val != "Spades" && val != "Diamonds")
 		{
-			retVal = "Invalid";
+			throw new InvalidCardException("Invalid card suit");
 		}
-		
-		return retVal;
 	}
 	
 	//getters and setters

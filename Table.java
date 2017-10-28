@@ -16,6 +16,7 @@ public class Table
 		{
 			//initialize deck
 			deck = new Deck();
+			deck.shuffle();
 		}
 		catch(InvalidCardException ex)
 		{
@@ -33,6 +34,7 @@ public class Table
 		{
 			//initialize deck
 			deck = new Deck();
+			deck.shuffle();
 		}
 		catch(InvalidCardException ex)
 		{
@@ -57,6 +59,18 @@ public class Table
 				System.out.println(hand.get(j).print());
 			}
 		}
+	}
+	
+	//add a new player
+	public void addNewPlayer()
+	{
+		numPlayers++;
+	}
+	
+	//add multiple new players
+	public void addNewPlayers(int num)
+	{
+		numPlayers = numPlayers + num;
 	}
 	
 	//getter for number of players

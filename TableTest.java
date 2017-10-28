@@ -37,6 +37,7 @@ public class TableTest
 	{
 		try
 		{
+			//confirm deal doesn't throw an exception
 			Table t1 = new Table(5);
 			t1.deal(2);
 		}
@@ -45,7 +46,22 @@ public class TableTest
 			fail();
 		}
 		
+		//confirm deal throws an exception
 		Table t2 = new Table(20);
 		t2.deal(3);
+	}
+	
+	@Test
+	public void testAddPlayer()
+	{
+		Table t1 = new Table();
+		assertEquals(0, t1.getNumPlayers());
+		
+		//confirm players are addable
+		t1.addNewPlayer();
+		assertEquals(1, t1.getNumPlayers());
+		
+		t1.addNewPlayers(4);
+		assertEquals(5, t1.getNumPlayers());
 	}
 }
